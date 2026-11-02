@@ -1,0 +1,23 @@
+חבילת עדכון – סימולטור ירפ"א א'
+
+מה יש כאן:
+  index.html + version.json          ← הגרסה הרגילה
+  test/index.html + test/version.json ← גרסת הבדיקה
+
+הקמה חד-פעמית (GitHub, חינם):
+ 1. היכנס ל-github.com ופתח חשבון.
+ 2. לחץ "New repository", תן שם (למשל yarpa-updates), בחר Public ולחץ Create.
+ 3. לחץ "uploading an existing file", גרור את כל התוכן של התיקייה הזו (כולל התיקייה test) ולחץ Commit changes.
+ 4. כתובת העדכונים שלך היא:
+      https://raw.githubusercontent.com/<שם-המשתמש>/yarpa-updates/main/
+    ולגרסת הבדיקה:
+      https://raw.githubusercontent.com/<שם-המשתמש>/yarpa-updates/main/test/
+ 5. כתוב את הכתובת בקובץ update-url.txt שליד Yarpa-A-Sim.exe (שורה אחת, בלי שום דבר אחר),
+    ואת כתובת ה-test בקובץ update-url.txt שליד Yarpa-A-Sim-TEST.exe.
+    עשה את זה לפני שאתה נותן את התוכנה למישהו – כך כל עותק ידע מאיפה להתעדכן.
+
+כל עדכון אחר כך:
+ - קבל ממני חבילת עדכון חדשה, ובמאגר ב-GitHub לחץ "Add file > Upload files", גרור את הקבצים החדשים (הם מחליפים את הישנים) ולחץ Commit changes.
+ - תוך כמה דקות, כל מי שפותח את התוכנה יקבל את הגרסה החדשה.
+
+שים לב: במאגר ציבורי (Public) כל מי שיודע את הכתובת יכול לראות את הקבצים. זה לא שונה ממי שכבר מחזיק את התוכנה, אבל כדאי לדעת.
