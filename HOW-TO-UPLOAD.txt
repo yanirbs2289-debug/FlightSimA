@@ -1,0 +1,17 @@
+Yarpa A Simulator – update package
+
+Contents:
+  index.html + version.json            -> regular version
+  test/index.html + test/version.json  -> test version
+
+Publishing this update:
+ 1. Go to github.com and open your yarpa-updates repository.
+ 2. Click "Add file" > "Upload files".
+ 3. Drag everything in this folder (including the test folder) into the page. The new files replace the old ones.
+ 4. Click "Commit changes".
+ Within a few minutes, everyone who opens the app gets the new version.
+
+Check: open https://raw.githubusercontent.com/YOUR-USERNAME/yarpa-updates/main/version.json
+and make sure it shows the new version number.
+
+Do not edit index.html or version.json by hand – version.json contains a checksum and the app will reject a modified file.

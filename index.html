@@ -154,6 +154,39 @@ body[data-test] .mhead{border-bottom-color:#ffb000}
 .updbar{display:none;align-items:center;justify-content:space-between;gap:12px;margin:14px auto 0;max-width:1124px;width:calc(100% - 56px);padding:10px 14px;background:#12306a;border:1px solid #36e04a;border-right:4px solid #36e04a;color:#e8eefb;font-size:14px}
 .updbar.show{display:flex}
 .updbar .btn{background:#2b5e2e;border-color:#4b9a50;border-radius:2px}
+
+/* ---- home screen, layout C (tiles) ---- */
+body[data-app=a] .mhead{padding:12px 32px;border-bottom:1px solid #22345a;background:#0d1a36}
+body[data-app=a] .brand b{font-size:20px}
+body[data-app=a] .mark{width:34px;height:34px}
+body[data-app=a] .chips{display:flex;gap:10px;font-size:13px}
+body[data-app=a] .chip{display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border:1px solid #2a3f66;border-radius:20px;color:#cfd9ee}
+body[data-app=a] .sdot{width:9px;height:9px;border-radius:50%;background:#43ff74;box-shadow:0 0 6px #43ff74}
+body[data-app=a] .sdot.warn{background:#ffb000;box-shadow:0 0 6px #ffb000}
+body[data-app=a] #sysState{color:#cfd9ee}
+body[data-app=a] #menu{background:linear-gradient(180deg,#0b1736,#070e22);background-size:auto}
+body[data-app=a] .mgrid{grid-template-columns:1fr;gap:14px;padding:22px 60px 14px;max-width:1240px}
+body[data-app=a] .hello{margin:0;font-size:26px;font-weight:700}
+body[data-app=a] .tiles{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:150px 150px;gap:14px;margin-top:14px}
+body[data-app=a] .tile{position:relative;text-align:right;background:#0f1d3a;border:1px solid #22345a;border-radius:6px;padding:22px 24px;color:#e8eefb;cursor:pointer;transition:border-color .12s,background .12s,transform .12s;font:inherit}
+body[data-app=a] .tile:hover{border-color:#c6e24a;background:#13244a}
+body[data-app=a] .tile svg{stroke:#c6e24a;fill:none;stroke-width:2.5;display:block}
+body[data-app=a] .tile b{display:block;font-size:19px;margin-top:10px}
+body[data-app=a] .tile small{display:block;color:#9fb0cc;font-size:13px;margin-top:6px;line-height:1.5}
+body[data-app=a] .tile.big{grid-row:1/3;background:linear-gradient(135deg,#1a3575,#0f1d3a);border-color:#c6e24a}
+body[data-app=a] .tile.big:hover{background:linear-gradient(135deg,#1f3f8a,#13244a)}
+body[data-app=a] .tile.big b{font-size:36px}
+body[data-app=a] .tile.big small{font-size:15px}
+body[data-app=a] .tile .go{position:absolute;bottom:26px;right:24px;padding:14px 44px;background:#c6e24a;color:#0a1430;font-weight:700;font-size:18px;border-radius:4px}
+body[data-app=a] .mside{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+body[data-app=a] .panel{background:#0c1834;border:1px solid #1c2c4d;border-radius:6px;padding:12px 18px}
+body[data-app=a] #menu .opts{gap:4px}body[data-app=a] #menu .opts label{padding:5px 0}body[data-app=a] .srow{padding:5px 0}
+body[data-app=a] .mside .ptitle:not(:first-child){margin-top:0}
+body[data-app=a] .testpick{margin:6px 0 0}
+body[data-app=a] .mfoot{display:flex;justify-content:space-between;align-items:center;gap:20px;background:transparent;border-top:1px solid #142445;padding:14px 60px}
+body[data-app=a] .mfoot .note{margin:0;max-width:none}
+body[data-app=a] .mfoot .copy{margin-top:0}
+@media (max-width:980px){body[data-app=a] .tiles{grid-template-columns:1fr 1fr;grid-template-rows:auto}body[data-app=a] .tile.big{grid-column:1/3;grid-row:auto;min-height:200px}body[data-app=a] .mside{grid-template-columns:1fr}}
 </style>
 </head>
 <body data-app="a">
@@ -174,8 +207,8 @@ body[data-test] .mhead{border-bottom-color:#ffb000}
 
 <div id="menu" class="screen show"><div class="card">
   <header class="mhead solo" data-app="a">
-    <div class="brand"><span class="mark" aria-hidden="true"></span><div><b>סימולטור ירפ"א א'</b><small>מערכת אימון · מעקב, שמירת מרחק וירי</small></div></div>
-    <div class="meta"><span>גרסה <span class="appver"></span></span><span class="sep"></span><span id="sysState">מערכת מוכנה</span></div>
+    <div class="brand"><span class="mark" aria-hidden="true"></span><div><b>סימולטור ירפ"א א'</b></div></div>
+    <div class="chips"><span class="chip"><i class="sdot" id="sysDot"></i><span id="sysState">מערכת מוכנה</span></span><span class="chip mono" dir="ltr">v<span class="appver"></span></span></div>
   </header>
   <h1 data-app="all">סימולטור ירפ"א – אימון</h1>
   <h1 class="solo" data-app="b">סימולטור ירפ"א ב' – אימון</h1>
@@ -183,10 +216,14 @@ body[data-test] .mhead{border-bottom-color:#ffb000}
   <div id="updbar" class="updbar"><span id="updtxt"></span><button class="btn sm" id="updgo">עדכן עכשיו</button></div>
   <div class="mgrid">
     <section class="mcol">
-      <div class="ptitle solo" data-app="a">תפריט ראשי</div>
-  <div class="menu-grid" data-app="a">
-    <button class="btn primary" data-go="a1">התחלת אימון<small>8 תרגילים: התקרבות, שמירת מרחק, מעקב בפניות ובגובה, וירי</small></button>
-    <button class="btn" data-go="setup">הגדרת סטיק ומצערת<small>זיהוי צירים, היפוך, אזור מת וכפתור ירי</small></button>
+      <h2 class="hello solo" data-app="a">שלום, מה נתרגל היום?</h2>
+  <div class="tiles" data-app="a">
+    <button class="tile big" data-go="a1"><svg width="56" height="56" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="15"/><path d="M20 13v14M13 20h14"/></svg><b>התחלת אימון</b><small>8 תרגילים: התקרבות, שמירת מרחק, מעקב בפניות ובגובה, וירי</small><span class="go">התחל</span></button>
+    <button class="tile" data-go="tut"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><path d="M6 31V9h28v22zM12 16h16M12 22h10"/></svg><b>מדריך אינטראקטיבי</b><small>לימוד הדרגתי של כל המדדים, עם תרגול</small></button>
+    <button class="tile" data-go="setup"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 33V15"/><circle cx="20" cy="11" r="4"/><path d="M12 33h16"/></svg><b>סטיק ומצערת</b><small>זיהוי צירים, היפוך וכפתור ירי</small></button>
+    <button class="tile" data-go="guideA"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><path d="M9 6h17l6 6v22H9zM14 18h12M14 24h12M14 30h8"/></svg><b>מדריך למשתמש</b><small>המסך, התרגילים ופתרון תקלות</small></button>
+    <button class="tile" data-go="aboutA"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="14"/><path d="M20 18v10M20 12v1.5"/></svg><b>אודות</b><small>גרסה ופרטי התוכנה</small></button>
+  </div>
     <div class="testpick">
       <div class="ptitle">גרסת בדיקה – בחירת תרגיל</div>
       <div class="tgrid">
@@ -196,10 +233,7 @@ body[data-test] .mhead{border-bottom-color:#ffb000}
         <button class="btn sm" data-ex="6">6 · ירי</button><button class="btn sm" data-ex="7">7 · ירי מתקדם</button>
       </div>
     </div>
-    <button class="btn solo" data-app="a" data-go="tut">מדריך אינטראקטיבי<small>לימוד הדרגתי של כל המדדים, עם תרגול בכל שלב – מומלץ להתחיל כאן</small></button>
-    <button class="btn solo" data-app="a" data-go="guideA">מדריך למשתמש<small>המסך, המצערת, התרגילים, מקלדת ופתרון תקלות</small></button>
-    <button class="btn solo" data-app="a" data-go="aboutA">אודות<small>גרסה ופרטי התוכנה</small></button>
-  </div>
+
   <div class="sec">ירפ"א ב' – מבנה ומשימה</div>
   <div class="menu-grid" data-app="b">
     <button class="btn primary" data-go="full">מבחן מלא<small>שלב א' (מבנה) ואחריו שלב ב' (משימה), עם תחקיר בסוף</small></button>
@@ -210,6 +244,7 @@ body[data-test] .mhead{border-bottom-color:#ffb000}
   </div>
     </section>
     <aside class="mside">
+      <div class="panel">
       <div class="ptitle solo" data-app="a">הגדרות אימון</div>
   <div class="opts">
     <label>רמת קושי
@@ -219,14 +254,17 @@ body[data-test] .mhead{border-bottom-color:#ffb000}
       <select id="optBg"><option value="blue" selected>כחול</option><option value="black">שחור</option></select></label>
     <label data-app="b"><input type="checkbox" id="optVoice" checked> הקראת קשר בקול (אם יש קול עברי בדפדפן)</label>
   </div>
+      </div>
+      <div class="panel">
       <div class="ptitle solo" data-app="a">מצב מערכת</div>
       <div id="padstatus"></div>
+      </div>
     </aside>
   </div>
   <footer class="mfoot">
   <p class="note" data-app="b">זהו סימולטור אימון שנבנה לפי תיאורים פומביים של המבחן (אתרי הכנה וחוויות מועמדים) ואינו התוכנה הרשמית של חיל האוויר. הגרפיקה, הניקוד וספי המעבר כאן הם הערכה שנועדה לתרגל את אותן מיומנויות: קואורדינציה, זיכרון, ריבוי משימות וקבלת החלטות תחת עומס.</p>
     <p class="note solo" data-app="a">סימולטור אימון עצמאי. אינו התוכנה הרשמית של צה"ל או של חיל האוויר ואינו קשור אליהם.</p>
-    <p class="note solo copy" data-app="a">© 2026 יניר בן שמעון · כל הזכויות שמורות · גרסה <span class="appver"></span></p>
+    <p class="note solo copy" data-app="a">© 2026 יניר בן שמעון · כל הזכויות שמורות</p>
   </footer>
 </div></div>
 
@@ -1160,7 +1198,7 @@ function updPadStatus(){const ps=pads().filter(Boolean);
     const all=ps.length&&ax('roll')&&ax('pitch')&&ax('throttle');
     $('#padstatus').innerHTML=row('בקר טיסה',ps.length>0,ps.length?ps[0].id.replace(/\s*\(.*$/,'').slice(0,26):'לא מחובר')+row('ציר גלגול',ax('roll'),ax('roll')?'מוגדר':'—')+row('ציר עלרוד',ax('pitch'),ax('pitch')?'מוגדר':'—')+row('מצערת',ax('throttle'),ax('throttle')?'מוגדרת':'—')
       +`<div class="shint">${ps.length?(all?'המערכת מוכנה לאימון.':'יש להשלים את הגדרת הצירים במסך "הגדרת סטיק ומצערת".'):'חבר סטיק ומצערת ולחץ על כפתור כלשהו בהם. ללא בקר ניתן להשתמש במקלדת: חיצים, W/S, X, רווח.'}</div>`;
-    const st=$('#sysState');if(st){st.textContent=all?'מערכת מוכנה':ps.length?'נדרשת הגדרה':'בקר לא מחובר';st.className=all?'':'warn'}return}
+    const st=$('#sysState');if(st){st.textContent=all?'מערכת מוכנה':ps.length?'נדרשת הגדרה':'בקר לא מחובר';st.className=all?'':'warn'}const sd=$('#sysDot');if(sd)sd.className='sdot'+(all?'':' warn');return}
   $('#padstatus').innerHTML=ps.length?`מחוברים: ${ps.map(p=>esc(p.id.slice(0,48))).join(' · ')}<br><span class="note">צירים: גלגול – ${CFG.axes.roll?'מוגדר':'לא'}, עלרוד – ${CFG.axes.pitch?'מוגדר':'לא'}, מצערת – ${CFG.axes.throttle?'מוגדר':'לא'}. כדאי לעבור על "הגדרת סטיק ומצערת" פעם אחת.</span>`
   :'לא זוהה סטיק. חבר את הסטיק והמצערת ולחץ על כפתור כלשהו בהם. בינתיים אפשר לטוס עם מקלדת: '+(document.body.dataset.app==='a'?'חיצים, W/S למצערת, X לאיפוס, רווח לירי.':'חיצים, W/S, רווח, B, F, E, R, Q, 1–4.')}
 
@@ -1236,7 +1274,7 @@ function frame(now){const dt=Math.min(.05,(now-last)/1000);last=now;poll(dt);
   requestAnimationFrame(frame)}
 
 /* ================= boot ================= */
-const APP_VERSION='1.1.0';
+const APP_VERSION='1.2.0';
 let UPD_READY=null;
 if(window.updater){window.updater.onReady((ver,notes)=>{UPD_READY=ver;$('#updtxt').textContent=`גרסה חדשה (${ver}) הורדה ומוכנה.${notes?' '+notes:''} ${game.mode==='menu'?'':'תוכל לעדכן בחזרה לתפריט.'}`;$('#updbar').classList.add('show')});
   document.addEventListener('click',e=>{if(e.target&&e.target.id==='updgo'&&UPD_READY)window.updater.apply()})}
